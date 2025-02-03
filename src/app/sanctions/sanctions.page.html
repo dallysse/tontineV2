@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+  <ion-toolbar  color = "primary">
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>    Sanctions     
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="bg-img">
+      <ion-card>
+        <ion-card-content>  
+          <div *ngFor="let sanction of sanctions, let i = index">
+              <ion-item><label>{{sanction.motif}}
+                <p>{{sanction.montant}}</p>
+              </label></ion-item>
+          </div>
+        </ion-card-content>
+      </ion-card>
+<!--       <ion-card>
+        <ion-item>
+          <ion-input [(ngModel)]="myTask"  placeholder="Ajouter une aide"> </ion-input>
+          <ion-button (click)="add()" shape="round" slot="end">
+            <ion-icon slot="icon-only" name="add"></ion-icon>
+          </ion-button>
+        </ion-item>
+      </ion-card> -->
+    </div>
+  
+  </ion-content>
+
+
+

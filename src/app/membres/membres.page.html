@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar  color = "primary">
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Liste de membres</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <div class="container">
+      <ion-item
+      *ngFor="let membre of membres"
+      [routerLink]="['/details-membre', membre.id_membre]"
+    >
+        <ion-badge slot="end">{{membre.id_membres+1}} </ion-badge>
+           <ion-label>{{membre.prenom}}</ion-label>
+        </ion-item>
+
+    </div>
+
+  </ion-content>
+
+

@@ -1,0 +1,36 @@
+<ion-header>
+ 
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+
+  <ion-card>
+    <ion-list>
+      <ion-item>
+        <ion-input [(ngModel)]="beneficiaire" label="Beneficiaire"  fill="outline" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <br/>
+      <ion-item>
+        <ion-input [(ngModel)]="duree" label="Durée du prêt"  fill="outline" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <br/>
+
+      <ion-item>
+        <ion-input [(ngModel)]="montant" label="Montant du prêt"  fill="outline" placeholder="Enter text"></ion-input>
+      </ion-item>
+      <br/>
+
+      <ion-item>
+        <ion-datetime id="datetime" displayFormat="MMM DD, YYYY"  [(ngModel)]="datePret" label="Date du prêt" ></ion-datetime>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>

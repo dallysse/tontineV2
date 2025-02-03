@@ -1,0 +1,85 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/membres"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      {{membre.prenom}} {{membre.nom}}
+      <ion-label
+      ><p>Née le {{membre.date_naissance| date}}</p>
+      <p>A étudié {{membre.formation}}</p></ion-label>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <div *ngIf="prets.length === 0">
+    <ion-list-header lines="full">
+      <ion-label>Pas de prêts contracter</ion-label>
+    </ion-list-header>
+  </div>
+  <div *ngIf="prets.length > 0">
+    <ion-list-header lines="full">
+      <ion-label>Liste de prêts rembourser et en cours</ion-label>
+    </ion-list-header>
+    <ion-list
+      *ngFor="let pret of prets, let i = index"
+      [ngClass]="pret.date_remboursement == null ? 'nonrembourser' : 'rembourser'"
+      color="red "
+    >
+      <ion-item>
+        <ion-label>
+          <p>
+            <ion-icon name="calendar-outline" slot="start"></ion-icon>
+            {{pret.date_pret | date }}
+          </p>
+          <p>Prêt sur {{pret.duree}} mois</p>
+          <p>
+            <ion-icon name="cash-outline" slot="start"></ion-icon> Montant
+            {{pret.montant | currency: 'EUR'}}
+          </p>
+          <p>
+            <span *ngIf="pret.duree==3">
+              <ion-icon name="cash-outline" slot="start"></ion-icon> Intérêt
+              <strong>{{pret.montant*3/100 | currency: 'EUR'}}</strong></span
+            >
+          </p>
+          <p>
+            <span *ngIf="pret.duree==6"
+              ><ion-icon name="cash-outline" slot="start"></ion-icon> Intérêt
+              {{pret.montant*6/100 | currency: 'EUR'}}</span
+            >
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div *ngIf="aides.length === 0">
+    <ion-list-header lines="full">
+      <ion-label>Aucune aide </ion-label>
+    </ion-list-header>
+  </div>
+  <div *ngIf="aides.length > 0">
+    <ion-list-header lines="full">
+      <ion-label>Liste des aides recus ou en cours</ion-label>
+    </ion-list-header>
+    <ion-list
+    *ngFor="let aide of aides, let i = index"
+    [ngClass]="aide.date_versement == null ? 'nonrembourser' : 'rembourser'"
+    color="red "
+    >
+    <ion-item>
+    <ion-label>
+      {{aide.nom}}
+      <p>{{ aide.date_versement | date}}</p>
+      <p>{{aide.type_aide}}</p>
+    </ion-label>
+  </ion-item>
+
+    </ion-list>
+  </div>
+</ion-card>
+
+</ion-content>

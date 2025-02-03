@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar >
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-title> Aides</ion-title>
+
+      <ion-button shape="round" [collapse]="true" (click)="openModalInfo()">
+        <ion-icon name="information-circle-outline"></ion-icon>
+      </ion-button>
+
+  </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-card>
+
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-toolbar>
+          Liste des aides ({{ listAides.length }})
+
+          <ion-buttons slot="end">
+            <ion-button fill="clear">Ouverts ({{ offenAidesList.length }})</ion-button>
+            <ion-button fill="clear">Fermées ({{ closeAidesList.length }})</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-list>
+    <ion-item
+      *ngFor="let aide of listAides, let i = index">
+
+      <ion-label>
+        {{aide.nom}}
+        <p>{{ aide.date_versement | date}}</p>
+        <p>{{aide.type_aide}}</p>
+        <p>{{aide.montant | currency: 'EUR'}}</p>
+      </ion-label>
+      <input type="checkbox" [(ngModel)]="date_versement" />
+    </ion-item>
+  </ion-list>
+</ion-card>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>   <ion-button  fill="clear" expand="full" (click)="openModalAdd()"> <p>  Ajouter un aide </p>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-button> </ion-title>
+  </ion-toolbar>
+</ion-footer>
