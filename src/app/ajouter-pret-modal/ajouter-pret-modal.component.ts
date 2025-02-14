@@ -1,10 +1,10 @@
 import { Component, Input, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
-import { TontineService} from '../services/tontine.service';
+import { TontineService } from '../services/tontine.service';
 import { CommonModule, DatePipe } from '@angular/common'; // Import CommonModule
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
-import { Aide }  from '../models/aide';
+import { Aide } from '../models/aide';
 import {
   IonButton,
   IonButtons,
@@ -41,33 +41,31 @@ export class AjouterPretModalComponent {
   datePret: Date = new Date();
   dateRemboursement: Date = new Date();
   duree: number = 0;
-  beneficiaire : string = "";
-  montant : number = 0;
+  beneficiaire: string = "";
+  montant: number = 0;
   datePipe = new DatePipe('en-US');
 
-  constructor(private modalCtrl: ModalController, private reunionService: TontineService) {}
+  constructor(private modalCtrl: ModalController, private reunionService: TontineService) { }
 
   closeModal() {
     this.modalCtrl.dismiss();
   }
 
-  register()
-  {
+  register() {
     let bodyData = {
-      "duree" : this.duree,
-      "beneficiaire" : this.beneficiaire,
-      "datePret" : this.datePipe.transform(this.datePret, 'yyyy.MM.dd'),
-      "montant" : this.montant,
-      "dateRemboursement" : this.dateRemboursement,
+      "duree": this.duree,
+      "beneficiaire": this.beneficiaire,
+      "datePret": this.datePipe.transform(this.datePret, 'yyyy.MM.dd'),
+      "montant": this.montant,
+      "dateRemboursement": this.dateRemboursement,
 
     };
 
-    this.reunionService.registerPret(bodyData).subscribe((resultData: any)=>
-    {
-        console.log("resultData "+this.datePret,);
-        alert('You have registered successfully');
-      
-      });
+    this.reunionService.registerPret(bodyData).subscribe((resultData: any) => {
+      console.log("resultData " + this.datePret,);
+      alert('You have registered successfully');
+
+    });
   }
 
 
@@ -102,7 +100,6 @@ export class AjouterPretModalComponent {
 
 
 
- 
 
 
-  
+

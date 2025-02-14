@@ -10,11 +10,10 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-card>
     <ion-card-content>
-      <ion-item *ngFor="let depense of depenses, let i = index">
+      <ion-item *ngFor="let depense of listDepenses, let i = index">
         <ion-label>
           {{depense.motif_depense}}
           <p>{{depense.montant_depense | currency: 'EUR' }}</p>
@@ -22,30 +21,13 @@
       </ion-item>
     </ion-card-content>
   </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-subtitle>Ajouter une depense</ion-card-subtitle>
-    </ion-card-header>
-    <ion-list>
-      <ion-item>
-        <ion-label>Date</ion-label>
-        <ion-datetime
-          displayFormat="MMM DD, YYYY"
-          [(ngModel)]="dateDepense"
-        ></ion-datetime>
-      </ion-item>
-      <ion-item>
-        <ion-label>Raison</ion-label>
-        <ion-input [(ngModel)]="motif"> </ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label>Montant</ion-label>
-        <ion-input [(ngModel)]="montant"> </ion-input>
-      </ion-item>
-      <ion-button (click)="add()" shape="round" expand="block" fill="solid">
-        <ion-icon slot="icon-only" name="add"></ion-icon>
-      </ion-button>
-    </ion-list>
-  </ion-card>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+     <ion-button  fill="clear" expand="full" (click)="openModalAdd()">
+      Ajouter une dépense
+      <ion-icon name="add-circle-outline"></ion-icon>
+    </ion-button></ion-title>
+  </ion-toolbar>
+</ion-footer>

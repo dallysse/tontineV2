@@ -1,11 +1,11 @@
 
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, model } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { TontineService} from '../services/tontine.service';
+import { TontineService } from '../services/tontine.service';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
-import { Membre }  from '../models/membre';
+import { Membre } from '../models/membre';
 import { RouterModule, Router } from '@angular/router';
 
 
@@ -32,7 +32,7 @@ export class MembresPage implements OnInit {
   }
 
   fetchMembres() {
-    this.reunionService.listMembres().subscribe((response: { data: Membre[]}) => {
+    this.reunionService.listMembres().subscribe((response: { data: Membre[] }) => {
       this.membres = response.data;
     });
   }

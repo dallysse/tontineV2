@@ -17,6 +17,7 @@ import {
 } from '@ionic/angular/standalone';
 import { ModalReglesComponent } from '../modal-regles/modal-regles.component';
 import { AjouterAideModalComponent } from '../ajouter-aide-modal/ajouter-aide-modal.component';
+import { AjouterDepenseModalComponent } from '../ajouter-depense-modal/ajouter-depense-modal.component';
 
 @Component({
   selector: 'app-depenses',
@@ -31,25 +32,28 @@ import { AjouterAideModalComponent } from '../ajouter-aide-modal/ajouter-aide-mo
 export class DepensesPage implements OnInit {
 
   total_depenses : number = 0;
-  depenses :  any[] = [];
+  depenses :  any = {};
+  listDepenses :  any[] = [];
   montant!: number;
   dateDepense!: Date;
   motif!: string;
   datePipe = new DatePipe('en-US');
 
-  constructor(private reunionService: TontineService) { }
+  constructor(private modalCtrl: ModalController, private reunionService: TontineService) { }
 
   ngOnInit() {
     this.getDepenses();
   }
 
   getDepenses() {
-    this.reunionService.getDepenses().subscribe((response: { data: Depense[]}) => {
-            this.depenses = response.data;
-            for(let depense of this.depenses){
-              this.total_depenses+=depense.montant_depense*1;
-              }               
-        });
+    this.reunionService.getDepenses().subscribe((data) => {
+      this.depenses = data
+      console.log('test terre dzfnb'+this.depenses);
+        for(let depense of this.depenses){
+          this.listDepenses.push(depense)
+          this.total_depenses+=depense.montant_depense*1;
+        }
+    });
   }
 
 register()
@@ -72,4 +76,27 @@ register()
 add(){
   this.register();
 }
+async openModalAdd() {
+    const modal = await this.modalCtrl.create({
+      component: AjouterDepenseModalComponent,
+      componentProps: {
+        title: 'Custom Modal Title',
+        content: 'This is the content of the modal.',
+      },
+    });
+
+    await modal.present();
+  }
+
+  async openModalInfo() {
+    const modal = await this.modalCtrl.create({
+      component: AjouterDepenseModalComponent,
+      componentProps: {
+        title: 'Custom Modal Title',
+        content: 'This is the content of the modal.',
+      },
+    });
+
+    await modal.present();
+  }
 }

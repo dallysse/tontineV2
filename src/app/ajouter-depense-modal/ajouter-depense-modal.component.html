@@ -1,3 +1,39 @@
-<p>
-  ajouter-depense-modal works!
-</p>
+<ion-header>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle>Ajouter une depense</ion-card-subtitle>
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+        <ion-datetime
+          displayFormat="MMM DD, YYYY"
+          [(ngModel)]="dateDepense"
+        ></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Raison</ion-label>
+        <ion-input [(ngModel)]="motif"> </ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Montant</ion-label>
+        <ion-input [(ngModel)]="montant"> </ion-input>
+      </ion-item>
+      <ion-button (click)="add()" shape="round" expand="block" fill="solid">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-list>
+  </ion-card>
+</ion-content>

@@ -51,6 +51,10 @@ const routes: Routes = [
   {
     path: 'regles',
     loadChildren: () => import('./regles/regles.module').then( m => m.ReglesPageModule)
+  },
+  {
+    path: 'detail-session/:id',
+    loadChildren: () => import('./detail-session/detail-session.module').then( m => m.DetailSessionPageModule)
   }
 ];
 

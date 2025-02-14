@@ -24,6 +24,7 @@ import { ModalReglesPretComponent } from '../modal-regles-prets/modal-regles-pre
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Add this line
   providers: [TontineService], // Provide the service if not already provided in root  imports: [IonicModule, CommonModule, FormsModule, HttpClientModule], // Add IonicModule here
 })
+
 export class PretPage implements OnInit {
 
 
@@ -51,9 +52,9 @@ export class PretPage implements OnInit {
     this.reunionService.getPrets().subscribe((data) => {
       this.prets = data;
       for (let pret of this.prets) {
-        this.PretsList.push(pret)
+        console.log('test----------------'+ this.PretsList.push(pret))
         if (pret.date_remboursement != null) {
-          this.closePretsList.push(pret)
+          console.log('test----------------'+ this.closePretsList.push(pret))
           if (pret.duree == 3) {
             this.interet_generer = pret.montant * 3 / 100;
           }

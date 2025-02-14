@@ -1,0 +1,155 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/accueil"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <p>
+        Session <br />{{reunion.session_debut | date}} au {{reunion.session_fin
+        | date}}
+      </p>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> Membres ({{ membresInscrits.length }}) </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item
+          *ngFor="let membre of membresInscrits, let i = index"
+          [routerLink]="['/details-membre', membre.id_membre]"
+        >
+          <ion-label>{{membre.nom}} </ion-label>
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        Rencontres ({{ rencontresSession.length }})
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item
+          *ngFor="let rencontre of rencontresSession, let i = index"
+          [routerLink]="['/details-assise', rencontre.id_rencontre]"
+        >
+          <ion-label>{{rencontre.date_rencontre}} </ion-label>
+          <ion-icon name="chevron-forward-outline"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> Prets ({{ PretsList.length }}) </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-grid>
+          <ion-col size="6" *ngFor="let pret of PretsList, let i = index">
+            <ion-card>
+              <ion-row>
+                <ion-col>
+                  <ion-badge
+                    *ngIf="pret.date_remboursement !== null"
+                    color="success"
+                    >Fermées</ion-badge
+                  >
+                  <ion-badge
+                    *ngIf="pret.date_remboursement === null"
+                    color="danger"
+                    >Ouverts</ion-badge
+                  >
+                </ion-col>
+                <ion-col style="text-align: right; font-size: 20px">
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="pret.date_remboursement"
+                  />
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <h3>{{pret.nom}}</h3>
+                  <p>
+                    <ion-icon name="calendar-outline" slot="start"></ion-icon>
+                    {{pret.date_pret | date }}
+                  </p>
+                  <p>Prêt sur {{pret.duree}} mois</p>
+                  <p>
+                    <ion-icon name="cash-outline" slot="start"></ion-icon>
+                    Montant {{pret.montant | currency: 'EUR'}}
+                  </p>
+                  <p>
+                    <span *ngIf="pret.duree==3">
+                      <ion-icon name="cash-outline" slot="start"></ion-icon>
+                      Intérêt {{pret.montant*3/100 | currency: 'EUR'}}</span
+                    >
+                  </p>
+                  <p>
+                    <span *ngIf="pret.duree==6"
+                      ><ion-icon name="cash-outline" slot="start"></ion-icon>
+                      Intérêt {{pret.montant*6/100 | currency: 'EUR'}}</span
+                    >
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </ion-col>
+        </ion-grid>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title> Aides ({{ listAides.length }}) </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-grid>
+          <ion-col size="6" *ngFor="let aide of listAides, let i = index">
+            <ion-card>
+              <ion-row>
+                <ion-col>
+                  <ion-badge
+                    *ngIf="aide.date_versement !== null"
+                    color="success"
+                    >Fermées</ion-badge
+                  >
+                  <ion-badge *ngIf="aide.date_versement === null" color="danger"
+                    >Ouverts</ion-badge
+                  >
+                </ion-col>
+                <ion-col style="text-align: right; font-size: 20px">
+                  <input type="checkbox" [(ngModel)]="aide.date_versement" />
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col>
+                  <h3>{{aide.nom}}</h3>
+                  <p>
+                    <ion-icon name="calendar-outline" slot="start"></ion-icon>
+                    {{aide.date_ouverture_aide | date }}
+                  </p>
+                  <p>{{aide.type_aide}}</p>
+                  <p>
+                    <ion-icon name="cash-outline" slot="start"></ion-icon>
+                    Montant {{aide.montant | currency: 'EUR'}}
+                  </p>
+                </ion-col>
+              </ion-row>
+            </ion-card>
+          </ion-col>
+        </ion-grid>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
