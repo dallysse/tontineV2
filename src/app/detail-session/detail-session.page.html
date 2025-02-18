@@ -22,9 +22,22 @@
         <ion-item
           *ngFor="let membre of membresInscrits, let i = index"
           [routerLink]="['/details-membre', membre.id_membre]"
+          [ngClass]="{
+            'commande-ce-mois': isThisMonth(membre.mois_encaissement)
+          }"
         >
-          <ion-label>{{membre.nom}} </ion-label>
-          <ion-icon name="chevron-forward-outline"></ion-icon>
+          <ion-label *ngIf="membre.mois_encaissement  !== null">
+            <h3>{{membre.nom}} {{membre.prenom}}</h3>
+            <p>
+              <ion-icon name="calendar-outline" slot="start"></ion-icon>
+              {{ membre.mois_encaissement | date}}
+            </p>
+          </ion-label>
+          <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+
+          <ion-label *ngIf="membre.mois_encaissement == null">
+            <h3>{{membre.nom}} {{membre.prenom}}</h3>
+          </ion-label>
         </ion-item>
       </ion-list>
     </ion-card-content>

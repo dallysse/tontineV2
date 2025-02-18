@@ -1,0 +1,4 @@
+  - Authentification
+    user
+    roles et permission (president, tresorier, secretaire, vice president, commissaire au compte, vice secretaire, membres)
+,

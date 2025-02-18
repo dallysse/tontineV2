@@ -4,23 +4,21 @@
       <ion-back-button defaultHref="/detail-session"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      <p>Rencontre du
-      {{rencontre.date_rencontre | date}}</p>
+      <p>Rencontre du {{rencontre.date_rencontre | date}}</p>
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
   <ion-list>
     <div>
       <ion-card>
-      <ion-list-header lines="full">
-        <h3>Membres presents ({{ presents.length }})</h3>
-      </ion-list-header>
-      <ion-item *ngFor="let present of presents, let i = index">
-        <ion-label>{{present.prenom}} </ion-label>
-      </ion-item>
-    </ion-card>
+        <ion-list-header lines="full">
+          <h3>Membres presents ({{ presents.length }})</h3>
+        </ion-list-header>
+        <ion-item *ngFor="let present of presents, let i = index">
+          <ion-label>{{present.prenom}} </ion-label>
+        </ion-item>
+      </ion-card>
     </div>
   </ion-list>
 </ion-content>

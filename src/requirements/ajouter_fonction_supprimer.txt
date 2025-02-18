@@ -1,0 +1,8 @@
+- supprimer une reunion
+              un pret
+              une aide
+              un membre a une reunion
+              une amande
+              une renconcre a une session
+              une depense
+              un retrait de fond de caisse

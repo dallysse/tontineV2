@@ -1,0 +1,2 @@
+- aujouter les type_pret(court et long terme)
+- taux dinterret peut varier selon la session de le reunion
