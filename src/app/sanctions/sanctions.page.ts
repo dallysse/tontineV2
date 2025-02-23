@@ -1,10 +1,10 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, model } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
-import { TontineService} from '../services/tontine.service';
+import { TontineService } from '../services/tontine.service';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
-import { Aide }  from '../models/aide';
+import { Aide } from '../models/aide';
 import {
   IonButton,
   IonButtons,
@@ -23,18 +23,28 @@ import { Sanction } from '../models/sanction';
   styleUrls: ['./sanctions.page.scss'],
   imports: [IonicModule, CommonModule, FormsModule, HttpClientModule], // Add IonicModule here
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Add this line
-  providers: [TontineService], 
+  providers: [TontineService],
 })
 
 export class SanctionsPage implements OnInit {
 
-  constructor( private reunionService: TontineService) { }
+  constructor(private reunionService: TontineService) { }
 
   sanctions: any[] = [];
+  sanctionSession: any = {};
+
   ngOnInit() {
-    this.reunionService.getSanctions().subscribe((response: { data: Sanction[]}) => {
-      this.sanctions = response.data;  
-  });
+    this.getSanction()
   }
+
+  getSanction() {
+    this.reunionService.getSanctions().subscribe((data) => {
+      this.sanctionSession = data;
+      for (let sanction of this.sanctionSession) {
+        this.sanctions.push(sanction)
+      }
+    });
+  }
+
 
 }

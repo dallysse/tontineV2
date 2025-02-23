@@ -12,11 +12,21 @@ import {
   IonHeader,
   IonModal,
   IonTitle,
-  IonToolbar,
+  IonToolbar, IonSegment, IonSegmentButton, IonSegmentContent, IonSegmentView, InfiniteScrollCustomEvent,
+  IonAvatar,
+  IonFab,
+  IonFabButton,
+  IonIcon,
+  IonInfiniteScroll,
+  IonInfiniteScrollContent,
+  IonItem,
+  IonLabel,
+  IonList,
 } from '@ionic/angular/standalone';
 import { ModalReglesComponent } from '../modal-regles/modal-regles.component';
 import { AjouterAideModalComponent } from '../ajouter-aide-modal/ajouter-aide-modal.component';
-
+import { addIcons } from 'ionicons';
+import { add } from 'ionicons/icons';
 
 @Component({
   standalone: true,
@@ -30,7 +40,10 @@ import { AjouterAideModalComponent } from '../ajouter-aide-modal/ajouter-aide-mo
 
 export class AidesPage implements OnInit {
 
-  constructor(private modalCtrl: ModalController, private reunionService: TontineService) { }
+  constructor(private modalCtrl: ModalController, private reunionService: TontineService) {
+    addIcons({ add });
+
+  }
 
   aides: any = {};
   listAides: Aide[] = [];

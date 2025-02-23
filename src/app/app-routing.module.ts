@@ -55,6 +55,14 @@ const routes: Routes = [
   {
     path: 'detail-session/:id',
     loadChildren: () => import('./detail-session/detail-session.module').then( m => m.DetailSessionPageModule)
+  },
+  {
+    path: 'cotisations',
+    loadChildren: () => import('./cotisations/cotisations.module').then( m => m.CotisationsPageModule)
+  },
+  {
+    path: 'parametre',
+    loadChildren: () => import('./parametre/parametre.module').then( m => m.ParametrePageModule)
   }
 ];
 

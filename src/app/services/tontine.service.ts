@@ -101,9 +101,9 @@ export class TontineService {
   }
 
 
-  getSanctions(): Observable<{ data: Sanction[] }> {
+  getSanctions(): Observable<{ data: any[] }> {
     return this.http
-      .get<{ data: Sanction[] }>(this.apiUrl + 'sanctions')
+      .get<{ data: any[] }>(this.apiUrl + 'amandesSession')
   }
 
   getFonds(): Observable<{ data: FondCaisses[] }> {

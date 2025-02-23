@@ -10,11 +10,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button fill="clear" expand="full" (click)="openModalAdd()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
   <ion-card>
     <ion-card-header>
       <ion-card-title>
         <ion-toolbar>
+          <ion-segment value="all">
+            <ion-segment-button value="all" content-id="all">
+              <ion-label>Liste des aides ({{ listAides.length }})</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="ouverts" content-id="ouverts">
+              <ion-label>Ouverts ({{ offenAidesList.length }})</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="fermées" content-id="fermées">
+              <ion-label>Fermées ({{ closeAidesList.length }})</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-toolbar>
+
+        <!--  <ion-toolbar>
           Liste des aides ({{ listAides.length }})
           <ion-buttons slot="end">
             <ion-button fill="clear"
@@ -24,46 +43,77 @@
               >Fermées ({{ closeAidesList.length }})</ion-button
             >
           </ion-buttons>
-        </ion-toolbar>
+        </ion-toolbar> -->
       </ion-card-title>
     </ion-card-header>
-    <ion-list>
-      <ion-item *ngFor="let aide of listAides, let i = index">
-        <ion-label>
-          <ion-badge *ngIf="aide.date_versement !== null" color="success"
-            >Fermées</ion-badge
-          >
-          <ion-badge *ngIf="aide.date_versement === null" color="danger"
-            >Ouverts</ion-badge
-          >
-          <h3>{{aide.nom}}</h3>
 
-          <div *ngIf="aide.date_versement !== null">
-            <p>
-              <ion-icon name="calendar-outline" slot="start"></ion-icon>
-              {{ aide.date_versement | date}}
-            </p>
-          </div>
+    <ion-segment-view>
+      <ion-segment-content id="all" fixed-slot-placement="before">
+        <ion-list>
+          <ion-item *ngFor="let aide of listAides, let i = index">
+            <ion-label>
+              <ion-badge *ngIf="aide.date_versement !== null" color="success"
+                >Fermées</ion-badge
+              >
+              <ion-badge *ngIf="aide.date_versement === null" color="danger"
+                >Ouverts</ion-badge
+              >
+              <h3>{{aide.nom}}</h3>
 
-          <p>{{aide.type_aide}}</p>
+              <div *ngIf="aide.date_versement !== null">
+                <p>
+                  <ion-icon name="calendar-outline" slot="start"></ion-icon>
+                  {{ aide.date_versement | date}}
+                </p>
+              </div>
 
-          <p>
-            <ion-icon name="cash-outline" slot="start"></ion-icon> Montant
-            {{aide.montant | currency: 'EUR'}}
-          </p>
-        </ion-label>
-        <input type="checkbox" [(ngModel)]="date_versement" />
-      </ion-item>
-    </ion-list>
+              <p>{{aide.type_aide}}</p>
+
+              <p>
+                <ion-icon name="cash-outline" slot="start"></ion-icon> Montant
+                {{aide.montant | currency: 'EUR'}}
+              </p>
+            </ion-label>
+            <input type="checkbox" [(ngModel)]="date_versement" />
+          </ion-item>
+        </ion-list>
+      </ion-segment-content>
+      <ion-segment-content id="ouverts">
+        <ion-card>
+          <ion-list>
+            <ion-item *ngFor="let aide of offenAidesList, let i = index">
+              <ion-label>
+                <h3>{{aide.nom}}</h3>
+                <p>{{aide.type_aide}}</p>
+                <p>
+                  <ion-icon name="cash-outline" slot="start"></ion-icon> Montant
+                  {{aide.montant | currency: 'EUR'}}
+                </p>
+              </ion-label>
+              <input type="checkbox" [(ngModel)]="date_versement" />
+            </ion-item>
+          </ion-list>
+        </ion-card>
+      </ion-segment-content>
+      <ion-segment-content id="fermées"
+        ><ion-card>
+          <ion-list>
+            <ion-item *ngFor="let aide of closeAidesList, let i = index">
+              <ion-label>
+                <h3>{{aide.nom}}</h3>
+
+                <p>{{aide.type_aide}}</p>
+
+                <p>
+                  <ion-icon name="cash-outline" slot="start"></ion-icon> Montant
+                  {{aide.montant | currency: 'EUR'}}
+                </p>
+              </ion-label>
+              <input type="checkbox" [(ngModel)]="date_versement" />
+            </ion-item>
+          </ion-list>
+        </ion-card>
+      </ion-segment-content>
+    </ion-segment-view>
   </ion-card>
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-title>
-      <ion-button fill="clear" expand="full" (click)="openModalAdd()">
-        <p>Ajouter un aide</p>
-        <ion-icon name="add-outline"></ion-icon>
-      </ion-button>
-    </ion-title>
-  </ion-toolbar>
-</ion-footer>

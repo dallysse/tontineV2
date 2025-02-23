@@ -1,9 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title>Tontine</ion-title>
+    <ion-label slot="end">
+      <ion-button slot="" [routerLink]="['/parametre']">
+        <ion-icon name="options-outline" size="large"></ion-icon>
+      </ion-button>
+    </ion-label>
+    <ion-title>Tontine </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,6 +14,7 @@
     <ion-card-header>
       <ion-card-title>
         Etat des caisses {{total_fonds_disponible | currency: 'EUR'}}
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
@@ -25,8 +28,17 @@
           </ion-label>
         </ion-row>
       </ion-card>
-
-      <ion-card>
+      <ion-card [routerLink]="['/caisse']">
+        <ion-row>
+          <ion-badge>Total fond de caisse</ion-badge>
+        </ion-row>
+        <ion-row>
+          <ion-label>
+            <h1>{{0 | currency: 'EUR'}}</h1>
+          </ion-label>
+        </ion-row>
+      </ion-card>
+      <ion-card [routerLink]="['/depenses']">
         <ion-row>
           <ion-badge>Total dépenses</ion-badge>
         </ion-row>
@@ -37,7 +49,7 @@
         </ion-row>
       </ion-card>
 
-      <ion-card>
+      <ion-card [routerLink]="['/sanctions']">
         <ion-row>
           <ion-badge>Total amandes</ion-badge>
         </ion-row>
@@ -75,7 +87,7 @@
   <ion-card>
     <ion-card-header>
       <ion-card-title>
-        Liste des prêts ouverts ({{ offenPretsList.length }})
+        Prêts ouverts ({{ offenPretsList.length }})
       </ion-card-title>
     </ion-card-header>
     <ion-row>
@@ -104,7 +116,7 @@
   <ion-card>
     <ion-card-header>
       <ion-card-title>
-        Liste des aides ouvertes ({{ offenAidesList.length }})
+        Aides ouvertes ({{ offenAidesList.length }})
       </ion-card-title>
     </ion-card-header>
     <ion-row>
@@ -132,10 +144,10 @@
     <ion-card-header>
       <ion-card-title>
         <ion-toolbar>
-          <ion-buttons>
-            Liste des sessions
-            <ion-button fill="clear">
-              <ion-icon name="add-circle-outline"></ion-icon>
+          Sessions ({{ reunions.length }})
+          <ion-buttons slot="end">
+            <ion-button>
+              <ion-icon name="add-circle-outline" size="large"></ion-icon>
             </ion-button>
           </ion-buttons>
         </ion-toolbar>
@@ -174,13 +186,3 @@
     </ion-row>
   </ion-card>
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-title>
-      <ion-button fill="clear" expand="full">
-        Ajouter un membre
-        <ion-icon name="add-circle-outline"></ion-icon>
-      </ion-button>
-    </ion-title>
-  </ion-toolbar>
-</ion-footer>

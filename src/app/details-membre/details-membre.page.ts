@@ -32,7 +32,9 @@ import { Pret } from '../models/pret';
 
 export class DetailsMembrePage implements OnInit {
 
-  constructor(private route: ActivatedRoute, private reunionService: TontineService) { }
+  constructor(private route: ActivatedRoute, private reunionService: TontineService) {
+    this.id = this.route.snapshot.paramMap.get('id');
+  }
 
   membre: any = {};
   membres: Membre[] = [];
@@ -40,6 +42,7 @@ export class DetailsMembrePage implements OnInit {
   aideSession: any = {};
   prets: Pret[] = [];
   aides: Aide[] = [];
+  id: any;
 
 
   ngOnInit() {
@@ -57,8 +60,7 @@ export class DetailsMembrePage implements OnInit {
   }
 
   getMembre() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.reunionService.getMembre(id).subscribe((response: { data: Membre[] }) => {
+    this.reunionService.getMembre(this.id).subscribe((response: { data: Membre[] }) => {
       this.membre = response.data[0];
     });
   }

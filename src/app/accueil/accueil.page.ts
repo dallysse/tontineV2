@@ -54,12 +54,14 @@ export class AccueilPage implements OnInit {
   depenses: any = {};
 
   sanctions: any[] = [];
+  sanctionSession: any = {};
   total_sanctions: number = 0;
   offenAidesList: Aide[] = [];
   closeAidesList: Aide[] = [];
 
   offenPretsList: Pret[] = [];
   closePretsList: Pret[] = [];
+
 
   constructor(private reunionService: TontineService, private router: Router) { }
 
@@ -94,6 +96,15 @@ export class AccueilPage implements OnInit {
           this.membresInscrits.push(membre);
     console.log(this.membresInscrits.length)
 
+  }
+
+  getSanctions() {
+    this.reunionService.getSanctions().subscribe((data) => {
+      this.sanctionSession = data;
+      for (let sanction of this.sanctionSession) {
+        this.total_sanctions += sanction.montant * 1;
+      }
+    });
   }
 
   getDepenses() {
@@ -167,14 +178,6 @@ export class AccueilPage implements OnInit {
     return this.total_fonds;
   }
 
-  getSanctions() {
-    this.reunionService.getSanctions().subscribe((response: { data: Sanction[] }) => {
-      this.sanctions = response.data;
-      for (let sanction of this.sanctions) {
-        this.total_sanctions += sanction.montant * 1;
-      }
-    });
-  }
 }
 
 

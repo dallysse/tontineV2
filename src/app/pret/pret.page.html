@@ -11,87 +11,197 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div class="container">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>
-          <ion-toolbar>
-            Liste des prêts ({{ PretsList.length }})
-            <ion-buttons slot="end">
-              <ion-button fill="clear"
-                >Ouverts ({{ offenPretsList.length }})
-              </ion-button>
-              <ion-button fill="clear"
-                >Fermées ({{ closePretsList.length }})</ion-button
-              >
-            </ion-buttons>
-          </ion-toolbar>
-        </ion-card-title>
-      </ion-card-header>
-      <ion-grid>
-        <ion-row>
-          <ion-col size="6" *ngFor="let pret of PretsList, let i = index">
-            <ion-card>
-              <ion-row>
-                <ion-col>
-                  <ion-badge
-                    *ngIf="pret.date_remboursement !== null"
-                    color="success"
-                    >Fermées</ion-badge
-                  >
-                  <ion-badge
-                    *ngIf="pret.date_remboursement === null"
-                    color="danger"
-                    >Ouverts</ion-badge
-                  >
-                </ion-col>
-                <ion-col style="text-align: right; font-size: 20px">
-                  <input
-                    type="checkbox"
-                    [(ngModel)]="pret.date_remboursement"
-                  />
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col>
-                  <h3>{{pret.nom}}</h3>
-                  <p>
-                    <ion-icon name="calendar-outline" slot="start"></ion-icon>
-                    {{pret.date_pret | date }}
-                  </p>
-                  <p>Prêt sur {{pret.duree}} mois</p>
-                  <p>
-                    <ion-icon name="cash-outline" slot="start"></ion-icon>
-                    Montant {{pret.montant | currency: 'EUR'}}
-                  </p>
-                  <p>
-                    <span *ngIf="pret.duree==3">
+<ion-content>
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button fill="clear" expand="full" (click)="openModalAdd()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-toolbar>
+          <ion-segment value="all">
+            <ion-segment-button value="all" content-id="all">
+              <ion-label>Liste des prêts ({{ PretsList.length }})</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="ouverts" content-id="ouverts">
+              <ion-label>Ouverts ({{ offenPretsList.length }})</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="fermees" content-id="fermees">
+              <ion-label>Fermées ({{ closePretsList.length }})</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-toolbar>
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-segment-view>
+      <ion-segment-content id="all">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="6" *ngFor="let pret of PretsList, let i = index">
+              <ion-card>
+                <ion-row>
+                  <ion-col>
+                    <ion-badge
+                      *ngIf="pret.date_remboursement !== null"
+                      color="success"
+                      >Fermées</ion-badge
+                    >
+                    <ion-badge
+                      *ngIf="pret.date_remboursement === null"
+                      color="danger"
+                      >Ouverts</ion-badge
+                    >
+                  </ion-col>
+                  <ion-col style="text-align: right; font-size: 20px">
+                    <input
+                      type="checkbox"
+                      [(ngModel)]="pret.date_remboursement"
+                    />
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <h3>{{pret.nom}}</h3>
+                    <p>
+                      <ion-icon name="calendar-outline" slot="start"></ion-icon>
+                      {{pret.date_pret | date }}
+                    </p>
+                    <p>Prêt sur {{pret.duree}} mois</p>
+                    <p>
                       <ion-icon name="cash-outline" slot="start"></ion-icon>
-                      Intérêt {{pret.montant*3/100 | currency: 'EUR'}}</span
+                      Montant {{pret.montant | currency: 'EUR'}}
+                    </p>
+                    <p>
+                      <span *ngIf="pret.duree==3">
+                        <ion-icon name="cash-outline" slot="start"></ion-icon>
+                        Intérêt {{pret.montant*3/100 | currency: 'EUR'}}</span
+                      >
+                    </p>
+                    <p>
+                      <span *ngIf="pret.duree==6"
+                        ><ion-icon name="cash-outline" slot="start"></ion-icon>
+                        Intérêt {{pret.montant*6/100 | currency: 'EUR'}}</span
+                      >
+                    </p>
+                  </ion-col>
+                </ion-row>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-segment-content>
+
+      <ion-segment-content id="ouverts">
+        <ion-grid>
+          <ion-row>
+            <ion-col
+              size="6"
+              *ngFor="let pret of offenPretsList, let i = index"
+            >
+              <ion-card>
+                <ion-row>
+                  <ion-col>
+                    <ion-badge
+                      *ngIf="pret.date_remboursement === null"
+                      color="danger"
+                      >Ouverts</ion-badge
                     >
-                  </p>
-                  <p>
-                    <span *ngIf="pret.duree==6"
-                      ><ion-icon name="cash-outline" slot="start"></ion-icon>
-                      Intérêt {{pret.montant*6/100 | currency: 'EUR'}}</span
+                  </ion-col>
+                  <ion-col style="text-align: right; font-size: 20px">
+                    <input
+                      type="checkbox"
+                      [(ngModel)]="pret.date_remboursement"
+                    />
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <h3>{{pret.nom}}</h3>
+                    <p>
+                      <ion-icon name="calendar-outline" slot="start"></ion-icon>
+                      {{pret.date_pret | date }}
+                    </p>
+                    <p>Prêt sur {{pret.duree}} mois</p>
+                    <p>
+                      <ion-icon name="cash-outline" slot="start"></ion-icon>
+                      Montant {{pret.montant | currency: 'EUR'}}
+                    </p>
+                    <p>
+                      <span *ngIf="pret.duree==3">
+                        <ion-icon name="cash-outline" slot="start"></ion-icon>
+                        Intérêt {{pret.montant*3/100 | currency: 'EUR'}}</span
+                      >
+                    </p>
+                    <p>
+                      <span *ngIf="pret.duree==6"
+                        ><ion-icon name="cash-outline" slot="start"></ion-icon>
+                        Intérêt {{pret.montant*6/100 | currency: 'EUR'}}</span
+                      >
+                    </p>
+                  </ion-col>
+                </ion-row>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-segment-content>
+      <ion-segment-content id="fermees">
+        <ion-grid>
+          <ion-row>
+            <ion-col
+              size="6"
+              *ngFor="let pret of closePretsList, let i = index"
+            >
+              <ion-card>
+                <ion-row>
+                  <ion-col>
+                    <ion-badge
+                      *ngIf="pret.date_remboursement !== null"
+                      color="success"
+                      >Fermées</ion-badge
                     >
-                  </p>
-                </ion-col>
-              </ion-row>
-            </ion-card>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-  </div>
+                  </ion-col>
+                  <ion-col style="text-align: right; font-size: 20px">
+                    <input
+                      type="checkbox"
+                      [(ngModel)]="pret.date_remboursement"
+                    />
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <h3>{{pret.nom}}</h3>
+                    <p>
+                      <ion-icon name="calendar-outline" slot="start"></ion-icon>
+                      {{pret.date_pret | date }}
+                    </p>
+                    <p>Prêt sur {{pret.duree}} mois</p>
+                    <p>
+                      <ion-icon name="cash-outline" slot="start"></ion-icon>
+                      Montant {{pret.montant | currency: 'EUR'}}
+                    </p>
+                    <p>
+                      <span *ngIf="pret.duree==3">
+                        <ion-icon name="cash-outline" slot="start"></ion-icon>
+                        Intérêt {{pret.montant*3/100 | currency: 'EUR'}}</span
+                      >
+                    </p>
+                    <p>
+                      <span *ngIf="pret.duree==6"
+                        ><ion-icon name="cash-outline" slot="start"></ion-icon>
+                        Intérêt {{pret.montant*6/100 | currency: 'EUR'}}</span
+                      >
+                    </p>
+                  </ion-col>
+                </ion-row>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-segment-content>
+    </ion-segment-view>
+  </ion-card>
 </ion-content>
-<ion-footer>
-  <ion-toolbar>
-    <ion-title>
-      <ion-button fill="clear" expand="full" (click)="openModalAdd()">
-        Ajouter un prêt
-        <ion-icon name="add-circle-outline"></ion-icon> </ion-button
-    ></ion-title>
-  </ion-toolbar>
-</ion-footer>
