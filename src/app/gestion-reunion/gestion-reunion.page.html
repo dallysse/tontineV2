@@ -1,0 +1,100 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/parametre"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Reunion actuelle </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Vos reunions </ion-card-title>
+    </ion-card-header>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title> Ma reunion </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Autres </ion-card-title>
+    </ion-card-header>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-toolbar>
+            Creer une reunion
+            <ion-button slot="start" fill="clear">
+              <ion-icon name="add-circle-outline" size="large"></ion-icon>
+            </ion-button>
+
+            <ion-icon
+              name="chevron-forward-outline"
+              slot="end"
+              size="large"
+            ></ion-icon>
+          </ion-toolbar>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-toolbar>
+            Rejoindre une reunion
+            <ion-button slot="start" fill="clear">
+              <ion-icon name="enter-outline" size="large"></ion-icon>
+            </ion-button>
+            <ion-icon
+              name="chevron-forward-outline"
+              size="large"
+              slot="end"
+            ></ion-icon>
+          </ion-toolbar>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-toolbar>
+            Quitter cette reunion
+            <ion-icon
+              name="chevron-forward-outline"
+              size="large"
+              slot="end"
+            ></ion-icon>
+            <ion-button slot="start" fill="clear">
+              <ion-icon name="exit-outline" size="large"></ion-icon>
+            </ion-button>
+          </ion-toolbar>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-toolbar>
+            Modifier la reunion
+            <ion-icon
+              name="chevron-forward-outline"
+              size="large"
+              slot="end"
+            ></ion-icon>
+            <ion-button slot="start" fill="clear">
+              <ion-icon name="pencil-outline" size="large"></ion-icon>
+            </ion-button>
+          </ion-toolbar>
+        </ion-card-title>
+      </ion-card-header>
+    </ion-card>
+  </ion-card>
+</ion-content>

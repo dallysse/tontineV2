@@ -1,11 +1,11 @@
+import { MembreSession } from "./membreSession";
+
 export interface Pret {
-    nom: string;
-    prenom: string;
-    type_aide: string;
-    montant: number;
-    date_pret: Date;
-    date_remboursement: Date;
-    id_membre: number;
-    duree: number;
-    interet_generer: number;
-  }
+  id_pret: number;
+  montant: number;
+  date_pret: Date;
+  date_remboursement: Date;
+  membreSession: MembreSession;
+  duree: number;
+  interet_generer: number;
+}

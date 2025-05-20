@@ -14,72 +14,79 @@
     <ion-card-header>
       <ion-card-title>
         Etat des caisses {{total_fonds_disponible | currency: 'EUR'}}
-        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-card>
-        <ion-row>
-          <ion-badge>Total caisse sans emprunts</ion-badge>
-        </ion-row>
-        <ion-row>
-          <ion-label>
-            <h1>{{total_fonds | currency: 'EUR'}}</h1>
-          </ion-label>
-        </ion-row>
+        <ion-label>
+          <ion-toolbar>
+            <ion-badge>Total caisse sans emprunts</ion-badge>
+          </ion-toolbar>
+          <h1>{{total_fonds | currency: 'EUR'}}</h1>
+        </ion-label>
       </ion-card>
+
       <ion-card [routerLink]="['/caisse']">
-        <ion-row>
+        <ion-toolbar>
           <ion-badge>Total fond de caisse</ion-badge>
-        </ion-row>
-        <ion-row>
-          <ion-label>
-            <h1>{{0 | currency: 'EUR'}}</h1>
-          </ion-label>
-        </ion-row>
+
+          <ion-icon
+            name="chevron-forward-outline"
+            slot="end"
+            size="large"
+          ></ion-icon>
+        </ion-toolbar>
+        <ion-label>
+          <h1>{{0 | currency: 'EUR'}}</h1>
+        </ion-label>
       </ion-card>
+
       <ion-card [routerLink]="['/depenses']">
-        <ion-row>
+        <ion-toolbar>
           <ion-badge>Total dépenses</ion-badge>
-        </ion-row>
-        <ion-row>
-          <ion-label>
-            <h1>{{total_depenses | currency: 'EUR'}}</h1>
-          </ion-label>
-        </ion-row>
+
+          <ion-icon
+            name="chevron-forward-outline"
+            slot="end"
+            size="large"
+          ></ion-icon>
+        </ion-toolbar>
+        <ion-label>
+          <h1>{{total_depenses | currency: 'EUR'}}</h1>
+        </ion-label>
       </ion-card>
 
       <ion-card [routerLink]="['/sanctions']">
-        <ion-row>
+        <ion-toolbar>
           <ion-badge>Total amandes</ion-badge>
-        </ion-row>
-        <ion-row>
-          <ion-label>
-            <h1>{{total_sanctions | currency: 'EUR'}}</h1>
-          </ion-label>
-        </ion-row>
+
+          <ion-icon
+            name="chevron-forward-outline"
+            slot="end"
+            size="large"
+          ></ion-icon>
+        </ion-toolbar>
+        <ion-label>
+          <h1>{{total_sanctions | currency: 'EUR'}}</h1>
+        </ion-label>
       </ion-card>
 
       <ion-card>
-        <ion-row>
-          <ion-badge>Total intérets</ion-badge>
-        </ion-row>
-        <ion-row>
-          <ion-label>
-            <h1>{{total_interet_generer | currency: 'EUR'}}</h1>
-          </ion-label>
-        </ion-row>
+        <ion-label>
+          <ion-toolbar>
+            <ion-badge>Total intérets</ion-badge>
+          </ion-toolbar>
+          <h1>{{total_interet_generer | currency: 'EUR'}}</h1>
+        </ion-label>
       </ion-card>
 
       <ion-card>
-        <ion-row>
-          <ion-badge> Total des emprunts en cours </ion-badge>
-        </ion-row>
-        <ion-row>
-          <ion-label>
-            <h1>{{total_prets_non_rembourser | currency: 'EUR' }}</h1>
-          </ion-label>
-        </ion-row>
+        <ion-label>
+          <ion-toolbar>
+            <ion-badge>Total des emprunts en cours</ion-badge>
+          </ion-toolbar>
+          <h1>{{total_prets_non_rembourser | currency: 'EUR' }}</h1>
+        </ion-label>
       </ion-card>
     </ion-card-content>
   </ion-card>
@@ -93,7 +100,7 @@
     <ion-row>
       <ion-col *ngFor="let pret of offenPretsList, let i = index">
         <ion-card>
-          <h3>{{pret.nom }}</h3>
+          <!-- <h3>{{pret.nom }}</h3> -->
           <p>
             <ion-icon name="calendar-outline" slot="start"></ion-icon>
             {{pret.date_pret | date }}
@@ -122,7 +129,7 @@
     <ion-row>
       <ion-col *ngFor="let aide of offenAidesList, let i = index">
         <ion-card>
-          <h3>{{aide.nom}}</h3>
+          <!-- <h3>{{aide.nom}}</h3> -->
 
           <div *ngIf="aide.date_ouverture_aide !== null">
             <p>
@@ -134,7 +141,7 @@
           <p>{{aide.type_aide}}</p>
           <p>
             <ion-icon name="cash-outline" slot="start"></ion-icon> Montant
-            {{aide.montant | currency: 'EUR'}}
+            <!-- {{aide.montant | currency: 'EUR'}} -->
           </p>
         </ion-card>
       </ion-col>

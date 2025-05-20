@@ -63,6 +63,18 @@ const routes: Routes = [
   {
     path: 'parametre',
     loadChildren: () => import('./parametre/parametre.module').then( m => m.ParametrePageModule)
+  },
+  {
+    path: 'gestion-reunion',
+    loadChildren: () => import('./gestion-reunion/gestion-reunion.module').then( m => m.GestionReunionPageModule)
+  },
+  {
+    path: 'collation',
+    loadChildren: () => import('./collation/collation.module').then( m => m.CollationPageModule)
+  },
+  {
+    path: 'activites',
+    loadChildren: () => import('./activites/activites.module').then( m => m.ActivitesPageModule)
   }
 ];
 

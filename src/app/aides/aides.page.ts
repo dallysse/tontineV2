@@ -1,6 +1,6 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA, model } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
-import { TontineService } from '../services/tontine.service';
+import { AidesServiceService } from '../services/aides-service.service';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
@@ -35,12 +35,12 @@ import { add } from 'ionicons/icons';
   styleUrls: ['./aides.page.scss'],
   imports: [IonicModule, CommonModule, FormsModule, HttpClientModule], // Add IonicModule here
   schemas: [CUSTOM_ELEMENTS_SCHEMA], // Add this line
-  providers: [TontineService], // Provide the service if not already provided in root
+  providers: [AidesServiceService], // Provide the service if not already provided in root
 })
 
 export class AidesPage implements OnInit {
 
-  constructor(private modalCtrl: ModalController, private reunionService: TontineService) {
+  constructor(private modalCtrl: ModalController, private reunionService: AidesServiceService) {
     addIcons({ add });
 
   }

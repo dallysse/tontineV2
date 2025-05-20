@@ -1,7 +1,9 @@
+import { Membre } from "./membre";
+import { Session } from "./session";
+
 export interface MembreSession {
-  id_membre: number;
-  id_session: number;
+  id_membre: Membre;
+  id_session: Session;
   mois_encaissement: Date;
   actif: number;
-
 }

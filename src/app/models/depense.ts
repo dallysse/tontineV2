@@ -1,6 +1,8 @@
+import { Rencontre } from "./rencontre";
+
 export interface Depense {
-    id_depense: number;
-    id_rencontre: number;
-    motif_depense: string;
-    montant_depense: number;
-  }
+  id_depense: number;
+  rencontre: Rencontre;
+  motif_depense: string;
+  montant_depense: number;
+}

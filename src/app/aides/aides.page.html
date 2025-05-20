@@ -58,7 +58,7 @@
               <ion-badge *ngIf="aide.date_versement === null" color="danger"
                 >Ouverts</ion-badge
               >
-              <h3>{{aide.nom}}</h3>
+              <!-- <h3>{{aide.nom}}</h3> -->
 
               <div *ngIf="aide.date_versement !== null">
                 <p>
@@ -71,7 +71,7 @@
 
               <p>
                 <ion-icon name="cash-outline" slot="start"></ion-icon> Montant
-                {{aide.montant | currency: 'EUR'}}
+                <!-- {{aide.montant | currency: 'EUR'}} -->
               </p>
             </ion-label>
             <input type="checkbox" [(ngModel)]="date_versement" />
@@ -83,11 +83,11 @@
           <ion-list>
             <ion-item *ngFor="let aide of offenAidesList, let i = index">
               <ion-label>
-                <h3>{{aide.nom}}</h3>
+                <!-- <h3>{{aide.nom}}</h3> -->
                 <p>{{aide.type_aide}}</p>
                 <p>
                   <ion-icon name="cash-outline" slot="start"></ion-icon> Montant
-                  {{aide.montant | currency: 'EUR'}}
+                  <!-- {{aide.montant | currency: 'EUR'}} -->
                 </p>
               </ion-label>
               <input type="checkbox" [(ngModel)]="date_versement" />
@@ -100,13 +100,13 @@
           <ion-list>
             <ion-item *ngFor="let aide of closeAidesList, let i = index">
               <ion-label>
-                <h3>{{aide.nom}}</h3>
+                <!-- <h3>{{aide.nom}}</h3> -->
 
-                <p>{{aide.type_aide}}</p>
+                <!-- <p>{{aide.type_aide}}</p> -->
 
                 <p>
                   <ion-icon name="cash-outline" slot="start"></ion-icon> Montant
-                  {{aide.montant | currency: 'EUR'}}
+                  <!-- {{aide.montant | currency: 'EUR'}} -->
                 </p>
               </ion-label>
               <input type="checkbox" [(ngModel)]="date_versement" />
