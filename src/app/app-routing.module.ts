@@ -10,71 +10,71 @@ const routes: Routes = [
 
   {
     path: 'aides',
-    loadChildren: () => import('./aides/aides.module').then( m => m.AidesPageModule)
+    loadChildren: () => import('./pages/aides/aides.module').then(m => m.AidesPageModule)
   },
   {
     path: 'membres',
-    loadChildren: () => import('./membres/membres.module').then( m => m.MembresPageModule)
+    loadChildren: () => import('./pages/membres/membres.module').then(m => m.MembresPageModule)
   },
   {
     path: 'pret',
-    loadChildren: () => import('./pret/pret.module').then( m => m.PretPageModule)
+    loadChildren: () => import('./pages/pret/pret.module').then(m => m.PretPageModule)
   },
   {
     path: 'accueil',
-    loadChildren: () => import('./accueil/accueil.module').then( m => m.AccueilPageModule)
+    loadChildren: () => import('./pages/accueil/accueil.module').then(m => m.AccueilPageModule)
   },
   {
     path: 'depenses',
-    loadChildren: () => import('./depenses/depenses.module').then( m => m.DepensesPageModule)
+    loadChildren: () => import('./pages/depenses/depenses.module').then(m => m.DepensesPageModule)
   },
   {
     path: 'details-assise/:id',
-    loadChildren: () => import('./details-assise/details-assise.module').then( m => m.DetailsAssisePageModule)
+    loadChildren: () => import('./pages/details-assise/details-assise.module').then(m => m.DetailsAssisePageModule)
   },
   {
     path: 'details-membre/:id',
-    loadChildren: () => import('./details-membre/details-membre.module').then((m) => m.DetailsMembrePageModule),
+    loadChildren: () => import('./pages/details-membre/details-membre.module').then((m) => m.DetailsMembrePageModule),
   },
   {
     path: 'caisse',
-    loadChildren: () => import('./caisse/caisse.module').then( m => m.CaissePageModule)
+    loadChildren: () => import('./pages/caisse/caisse.module').then(m => m.CaissePageModule)
   },
   {
     path: 'sanctions',
-    loadChildren: () => import('./sanctions/sanctions.module').then( m => m.SanctionsPageModule)
+    loadChildren: () => import('./pages/sanctions/sanctions.module').then(m => m.SanctionsPageModule)
   },
   {
     path: 'projets',
-    loadChildren: () => import('./projets/projets.module').then( m => m.ProjetsPageModule)
+    loadChildren: () => import('./pages/projets/projets.module').then(m => m.ProjetsPageModule)
   },
   {
     path: 'regles',
-    loadChildren: () => import('./regles/regles.module').then( m => m.ReglesPageModule)
+    loadChildren: () => import('./pages/regles/regles.module').then(m => m.ReglesPageModule)
   },
   {
     path: 'detail-session/:id',
-    loadChildren: () => import('./detail-session/detail-session.module').then( m => m.DetailSessionPageModule)
+    loadChildren: () => import('./pages/detail-session/detail-session.module').then(m => m.DetailSessionPageModule)
   },
   {
     path: 'cotisations',
-    loadChildren: () => import('./cotisations/cotisations.module').then( m => m.CotisationsPageModule)
+    loadChildren: () => import('./pages/cotisations/cotisations.module').then(m => m.CotisationsPageModule)
   },
   {
     path: 'parametre',
-    loadChildren: () => import('./parametre/parametre.module').then( m => m.ParametrePageModule)
+    loadChildren: () => import('./pages/parametre/parametre.module').then(m => m.ParametrePageModule)
   },
   {
     path: 'gestion-reunion',
-    loadChildren: () => import('./gestion-reunion/gestion-reunion.module').then( m => m.GestionReunionPageModule)
+    loadChildren: () => import('./pages/gestion-reunion/gestion-reunion.module').then(m => m.GestionReunionPageModule)
   },
   {
     path: 'collation',
-    loadChildren: () => import('./collation/collation.module').then( m => m.CollationPageModule)
+    loadChildren: () => import('./pages/collation/collation.module').then(m => m.CollationPageModule)
   },
   {
     path: 'activites',
-    loadChildren: () => import('./activites/activites.module').then( m => m.ActivitesPageModule)
+    loadChildren: () => import('./pages/activites/activites.module').then(m => m.ActivitesPageModule)
   }
 ];
 
@@ -84,4 +84,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

@@ -15,7 +15,7 @@ export class AppComponent {
     {
       title: 'Aides',
       url: '/aides',
-      icon: 'help-buoy'
+      icon: 'medkit'
     },
     {
       title: 'Prêts',

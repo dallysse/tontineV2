@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">tontine</string>
+    <string name="title_activity_main">tontine</string>
+    <string name="package_name">com.tontine.app</string>
+    <string name="custom_url_scheme">com.tontine.app</string>
+</resources>

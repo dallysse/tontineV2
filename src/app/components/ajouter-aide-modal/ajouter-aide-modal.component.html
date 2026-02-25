@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+
+  <ion-card>
+
+    <ion-list>
+      <ion-item>
+        <ion-input [(ngModel)]="beneficiaire" label="Beneficiaire" label-placement="floating" fill="outline"
+          placeholder="Enter text"></ion-input>
+      </ion-item>
+      <br />
+      <ion-item>
+        <ion-select [(ngModel)]="type_aide" label="Motif">
+          <ion-select-option value="Naissance">Naissance</ion-select-option>
+          <ion-select-option value="Mariage">Mariage</ion-select-option>
+          <ion-select-option value="Deces">Deces</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+</ion-content>

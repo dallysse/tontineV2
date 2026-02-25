@@ -1,0 +1,114 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-icon name="close-outline" (click)="goBack()" color="primary" size="large"></ion-icon>
+    </ion-buttons>
+    <ion-title color="primary">S'inscrire</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <ion-list lines="none">
+
+      <!-- NOM -->
+      <ion-item>
+        <ion-icon name="person-outline" slot="start" color="primary"></ion-icon>
+        <ion-input type="text" placeholder="Nom " formControlName="name" autocomplete="name"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="registerForm.get('name')?.touched && registerForm.get('name')?.invalid">
+        <small *ngIf="registerForm.get('name')?.errors?.['required']">Le nom est requis</small>
+      </ion-text>
+
+      <!-- PRENOM -->
+      <ion-item>
+        <ion-icon name="person-outline" slot="start" color="primary"></ion-icon>
+        <ion-input type="text" placeholder="Prenom" formControlName="firstname" autocomplete="firstname"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="registerForm.get('firstname')?.touched && registerForm.get('firstname')?.invalid">
+        <small *ngIf="registerForm.get('firstname')?.errors?.['required']">Le prenom est requis</small>
+      </ion-text>
+
+      <!-- EMAIL -->
+      <ion-item class="ion-margin-top">
+        <ion-icon name="mail-outline" slot="start" color="primary"></ion-icon>
+        <ion-input type="email" placeholder="Email" formControlName="email" inputmode="email"
+          autocomplete="email"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.invalid">
+        <small *ngIf="registerForm.get('email')?.errors?.['required']">L'email est requis</small>
+        <small *ngIf="registerForm.get('email')?.errors?.['email']">Entrez une adresse email valide</small>
+      </ion-text>
+
+      <!-- TÉLÉPHONE -->
+      <ion-item class="ion-margin-top">
+        <ion-icon name="call-outline" slot="start" color="primary"></ion-icon>
+        <ion-input type="tel" placeholder="Numéro de téléphone" formControlName="phone" inputmode="numeric"
+          maxlength="15"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid">
+        <small *ngIf="registerForm.get('phone')?.errors?.['required']">Le téléphone est requis</small>
+        <small *ngIf="registerForm.get('phone')?.errors?.['minlength']">Le téléphone doit contenir au moins 10
+          chiffres</small>
+        <small *ngIf="registerForm.get('phone')?.errors?.['pattern']">Format de téléphone invalide</small>
+      </ion-text>
+
+      <!-- la ville -->
+      <ion-item>
+        <ion-icon name="person-outline" slot="start" color="primary"></ion-icon>
+        <ion-input type="text" placeholder="ville" formControlName="town" autocomplete="town"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="registerForm.get('town')?.touched && registerForm.get('town')?.invalid">
+      </ion-text>
+
+      <!-- Pays -->
+      <ion-item>
+        <ion-icon name="person-outline" slot="start" color="primary"></ion-icon>
+        <ion-input type="text" placeholder="Pays" formControlName="country" autocomplete="country"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="registerForm.get('country')?.touched && registerForm.get('country')?.invalid">
+      </ion-text>
+
+      <!-- MOT DE PASSE -->
+      <ion-item class="ion-margin-top">
+        <ion-icon name="lock-closed-outline" slot="start" color="primary"></ion-icon>
+        <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Mot de passe" formControlName="password"
+          autocomplete="new-password"></ion-input>
+        <ion-button fill="clear" slot="end" size="small" (click)="toggleShowPassword()">
+          <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'" color="primary"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-text color="danger" *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.invalid">
+        <small *ngIf="registerForm.get('password')?.errors?.['required']">Le mot de passe est requis</small>
+        <small *ngIf="registerForm.get('password')?.errors?.['minlength']">Minimum 8 caractères</small>
+      </ion-text>
+
+      <!-- CONFIRMER MOT DE PASSE -->
+      <ion-item class="ion-margin-top">
+        <ion-icon name="lock-closed-outline" slot="start" color="primary"></ion-icon>
+        <ion-input [type]="showConfirmPassword ? 'text' : 'password'" placeholder="Confirmer le mot de passe"
+          formControlName="confirmPassword"></ion-input>
+        <ion-button fill="clear" slot="end" size="small" (click)="toggleShowConfirmPassword()">
+          <ion-icon [name]="showConfirmPassword ? 'eye-off-outline' : 'eye-outline'" color="primary"></ion-icon>
+        </ion-button>
+      </ion-item>
+      <ion-text color="danger"
+        *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.hasError('mismatch')">
+        <small>Les mots de passe ne correspondent pas</small>
+      </ion-text>
+
+
+      <!-- BOUTON -->
+      <ion-button expand="block" shape="round" class="ion-margin-top" type="submit"
+        [disabled]="registerForm.invalid || isLoading">
+        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+        <span *ngIf="!isLoading">Créer un compte</span>
+      </ion-button>
+
+
+    </ion-list>
+
+  </form>
+
+</ion-content>

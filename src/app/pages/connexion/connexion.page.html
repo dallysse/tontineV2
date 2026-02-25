@@ -1,0 +1,53 @@
+<ion-content class="ion-padding">
+
+  <ion-avatar>
+    <ion-img src="assets/logo3.png"></ion-img>
+  </ion-avatar>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+    <ion-list lines="none">
+      <!-- EMAIL -->
+      <ion-item class="ion-margin-top">
+        <ion-icon color="primary" name="mail-outline" slot="start"></ion-icon>
+        <ion-input type="email" placeholder="Email" formControlName="email" inputmode="email"
+          autocomplete="email"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+        <small *ngIf="loginForm.get('email')?.errors?.['required']">L'email est requis</small>
+        <small *ngIf="loginForm.get('email')?.errors?.['email']">Entrez une adresse email valide</small>
+      </ion-text>
+
+      <ion-item color="light" class="ion-margin-top">
+        <ion-icon color="primary" name="key" slot="start"></ion-icon>
+        <ion-icon color="primary" slot="end" [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"
+          (click)="toggleShowPassword()"></ion-icon>
+        <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Mot de passe"
+          formControlName="password"></ion-input>
+      </ion-item>
+      <ion-text color="danger" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+        <p class="errorMsg">* Le mot de passe doit contenir au moins 8 caractères.</p>
+      </ion-text>
+    </ion-list>
+
+
+    <p class="ion-text-right" routerLink="/mot-passe-oublier">Mot de passe oublié?</p>
+
+    <ion-button expand="block" shape="round" type="submit" color="primary" [disabled]="isLoading || isLocked || loginForm.invalid">
+      <span *ngIf="!isLoading">Connexion</span>
+      <ion-spinner *ngIf="isLoading" name="circles"></ion-spinner>
+    </ion-button>
+    <ion-text color="warning" *ngIf="isLocked">
+      <small>Trop de tentatives. Réessayez dans {{ lockRemainingSeconds }}s.</small>
+    </ion-text>
+
+
+  </form>
+
+  <ion-text color="primary" class="ion-text-center" routerLink="/creer-compte">
+    <p class="marginTop">
+      Déjà inscris?
+      <b>Inscrivez vous</b>
+    </p>
+  </ion-text>
+
+</ion-content>

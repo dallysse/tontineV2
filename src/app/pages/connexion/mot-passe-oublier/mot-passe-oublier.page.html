@@ -1,0 +1,11 @@
+<ion-text color="danger" *ngIf="resetForm.get('email')?.touched && resetForm.get('email')?.invalid">
+  <p *ngIf="resetForm.get('email')?.errors?.['required']" class="errorMsg">* L'email est requis.</p>
+  <p *ngIf="resetForm.get('email')?.errors?.['email']" class="errorMsg">* Entrez une adresse email valide.</p>
+</ion-text>
+
+<div class="ion-text-center">
+  <ion-button type="submit" color="primary" [disabled]="resetForm.invalid || loading">
+    <span *ngIf="!loading">ENVOYER LE LIEN</span>
+    <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+  </ion-button>
+</div>
