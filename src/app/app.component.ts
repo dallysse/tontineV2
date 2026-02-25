@@ -1,42 +1,14 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { IonApp, IonIcon, IonTabBar, IonTabButton, IonTabs } from '@ionic/angular/standalone';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
-  standalone: false,
+  standalone: true,
+  imports: [IonApp, IonTabs, IonTabBar, IonTabButton, IonIcon, RouterLink],
 })
 export class AppComponent {
-  public appPages = [
-    {
-      title: 'Accueil',
-      url: '/accueil',
-      icon: 'home'
-    },
-    {
-      title: 'Aides',
-      url: '/aides',
-      icon: 'medkit'
-    },
-    {
-      title: 'Prêts',
-      url: '/pret',
-      icon: 'cash'
-    },
-    {
-      title: 'Cotisations',
-      url: '/cotisations',
-      icon: 'cash'
-    },
-    {
-      title: 'Projets',
-      url: '/projets',
-      icon: 'file-tray-full'
-    },
-    {
-      title: 'Regles',
-      url: '/regles',
-      icon: 'receipt'
-    }
-  ];
-  constructor() { }
+  constructor() {}
 }

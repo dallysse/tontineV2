@@ -1,8 +1,24 @@
 import { enableProdMode } from '@angular/core';
-
-
+import { bootstrapApplication } from '@angular/platform-browser';
+import { PreloadAllModules, RouteReuseStrategy, provideRouter, withPreloading } from '@angular/router';
+import { IonicRouteStrategy, provideIonicAngular } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { peopleOutline, heartOutline, appsOutline, homeOutline, cashOutline, receiptOutline, medkitOutline, fileTrayFullOutline } from 'ionicons/icons';
+import {
+  appsOutline,
+  cashOutline,
+  fileTrayFullOutline,
+  heartOutline,
+  helpBuoy,
+  homeOutline,
+  medkitOutline,
+  peopleOutline,
+  receiptOutline,
+  walletOutline,
+} from 'ionicons/icons';
+
+import { AppComponent } from './app/app.component';
+import { routes } from './app/app.routes';
+import { environment } from './environments /environment.prod';
 
 addIcons({
   'people-outline': peopleOutline,
@@ -12,17 +28,19 @@ addIcons({
   'medkit-outline': medkitOutline,
   'cash-outline': cashOutline,
   'file-tray-full-outline': fileTrayFullOutline,
-  'receipt-outline': receiptOutline
+  'receipt-outline': receiptOutline,
+  'wallet-outline': walletOutline,
+  'help-buoy': helpBuoy,
 });
 
 if (environment.production) {
   enableProdMode();
 }
 
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-import { AppModule } from './app/app.module';
-import { environment } from './environments /environment.prod';
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.log(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideIonicAngular(),
+    provideRouter(routes, withPreloading(PreloadAllModules)),
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+  ],
+}).catch((err) => console.error(err));
